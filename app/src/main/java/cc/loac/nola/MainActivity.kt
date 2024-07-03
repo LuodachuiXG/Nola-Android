@@ -1,43 +1,44 @@
 package cc.loac.nola
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import cc.loac.nola.ui.NolaApp
 import cc.loac.nola.ui.theme.NolaTheme
 
-class MainActivity : ComponentActivity() {
+open class MainActivity : ComponentActivity() {
+
+    companion object {
+        // 全局 Context
+        lateinit var appContext: Context
+            private set
+        // 主 Activity
+        lateinit var mainActivity: ComponentActivity
+            private set
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appContext = applicationContext
+        mainActivity = this
+        enableEdgeToEdge()
         setContent {
             NolaTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    // Nola 程序入口
+                    NolaApp()
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-            text = "Hello $name!",
-            modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NolaTheme {
-        Greeting("Android")
-    }
 }
