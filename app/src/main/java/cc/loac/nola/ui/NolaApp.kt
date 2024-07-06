@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -40,7 +41,6 @@ import cc.loac.nola.R
 import cc.loac.nola.ui.screens.home.HomeScreen
 import cc.loac.nola.ui.screens.login.LoginScreen
 import cc.loac.nola.ui.screens.me.MeScreen
-import kotlin.system.exitProcess
 
 /**
  * 所有页面枚举类
@@ -72,6 +72,10 @@ private sealed class BottomNav(
 /**
  * Nola App 入口
  */
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
 @Composable
 fun NolaApp() {
     // 程序导航（Screen 入口）
